@@ -61,26 +61,26 @@ struct ContentView: View {
         let answer = newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
         
         guard answer.count > 2 else {
-            wordError(title: "Word is too short", message: "Words must be at least 3 letters long")
+            wordError(title: "La palabra '\(answer)' es muy corts", message: "Las palabras deben tener al menos 3 letras")
             return
         }
         
         guard answer != rootWord else { 
-            wordError(title: "Nice try...", message: "You can't use your starter word")
+            wordError(title: "Ehm.. no!", message: "No puedes utilizar la palabra proporcionada como respuesta")
             return }
         
         guard isOriginal(word: answer) else {
-            wordError(title: "Word used already", message: "Be more original")
+            wordError(title: "Ya escribiste la palabra '\(answer)'", message: "No puedes repetir palabras")
             return
         }
         
         guard isPosible(word: answer) else {
-            wordError(title: "Word not posible", message: "You can't spell that word from thar '\(rootWord)'!")
+            wordError(title: "La palabra '\(answer)' no esta contenida en \(rootWord)", message: "Solo los caracteres con la misma acentuación son válidos o alguna letra no existe en la palabra")
             return
         }
         
         guard isReal(word: answer) else {
-            wordError(title: "Word not recognized", message: "You can't just make them up, you know!")
+            wordError(title: "La palabra '\(answer)' no existe", message: "Solo son válidas las palabras incluidas en el diccionario")
             return
         }
         
